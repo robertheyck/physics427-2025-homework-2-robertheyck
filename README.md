@@ -4,7 +4,7 @@ __Due 11:59pm Monday 9/11/2023__
 
 ## 1. Root Finding Algorithms
 
-In a C++ header file `problem1.h`, implement the three root-finding algorithms discussed in class. Use template to allow the functions to accept arbitrary functions for input. The three functions should look like:
+In a C++ header file `problem1.h`, implement the three root-finding algorithms discussed in class. Use template to allow the functions to accept arbitrary functions $f$ for input, and solve the equation $f(x) = 0$. The three functions should look like:
 
 ``` c++
 template <typename F>
@@ -17,10 +17,10 @@ template <typename F, typename Fprime>
 std::tuple<bool, double> newton_raphson(const F& f, const Fprime& fprime, double x0, double tolerance);
 ```
 
-Fixed point iteration and Newton's method both start with a trial solution, whereas the bisection method starts with an interval $[a, b]$. All of them accepts a tolerance value. For the purpose of the homework, we take it as a "relative tolerance", meaning that we terminate the iteration when $|1 - x_{n+1}/x_n| < \epsilon$ where $\epsilon$ is the given tolerance. Specifically for bisection, this criterion can be replaced by $|b_n - a_n| / |b_n + a_n| < \epsilon$. 
+Fixed point iteration and Newton's method both start with a trial solution, whereas the bisection method starts with an interval $[a, b]$. All of them accepts a tolerance value. For the purpose of the homework, we take it to mean "how close $f(x)$ is close to 0", meaning that we terminate the iteration when $|f(x_n)| < \epsilon$ where $\epsilon$ is the given tolerance. 
 
-We use `std::tuple` as return value again, since we want to include the information of whether a solution was found. The first element is a boolean value, marking whether the algorithm converged correctly. If the iteration stops due to hitting the tolerance, return `true` for the boolean in the `std::tuple`, and set the second element as the found solution. If for whatever reason the iteration fails to converge, does not hit the target tolerance, or produces NaN, then you should return `false` for the first element in the `std::tuple`, and set the `double` to whatever value the iteration gives you (probably a wrong answer or NaN).
-
+We use `std::tuple` as return value again, since we want to include the information of whether a solution was found. The first element is a boolean value, marking whether the algorithm converged correctly. If the iteration stops due to hitting the tolerance, return `true` for the boolean in the `std::tuple`, and set the second element as the found solution. If for whatever reason the iteration fails to converge, does not hit the target tolerance, or produces NaN, then you should return `false` for the first element in the `std::tuple`, and set the `double` to whatever value the iteration gives you (probably a wrong answer or NaN). Note that in order to achieve this, you may need to set a maximum number of iterations.
+    
 Note that for Newton's method, you will also need to pass the derivative of $f$ as input, since we need to evaluate it during the iteration.
 
 Finally add and commit your `problem1.h` to the repo. I have included a test C++ file, `test.cpp`, in the repository to help you debug your code. It will assume your functions are implemented in the `problem1.h` header, and try to call these functions to test whether they yield correct results. I also encourage you to write a few of your own test cases, since the homework problem will be graded using a different, more comprehensive set of test cases.
