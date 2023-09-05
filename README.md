@@ -31,6 +31,8 @@ In a system of two celestial bodies orbiting each other, there are equilibrium p
 
 We are interested in the 3 collinear Lagrange points lying on along the line going through the Sun and the Earth. $L_1$ is defined to be the point between the Earth and the Sun where the combined gravitational force of both bodies gives the right centrifugal force for an object to orbit there at the same orbital period as the Earth. This way, such an object will be seen as "stationary" with respect to both the Earth and the Sun.
 
+![Illustration](pic.png)
+
 Let $M_1$ and $M_2$ be the masses of the Sun and the Earth respectively. Let $R$ be the Earth-Sun distance, and $r_1$ be the distance of $L_1$ from the Earth. Both of the Sun and the Earth orbit around their center of mass, which is $RM_2/(M_1 + M_2)$ away from the center of the Sun. Kepler's third law tells us that:
 
 $$
