@@ -33,7 +33,7 @@ We are interested in the 3 collinear Lagrange points lying on along the line goi
 
 ![Illustration](pic.png)
 
-Let $M_1$ and $M_2$ be the masses of the Sun and the Earth respectively. Let $R$ be the Earth-Sun distance, and $r_1$ be the distance of $L_1$ from the Earth. Both of the Sun and the Earth orbit around their center of mass, which is $RM_2/(M_1 + M_2)$ away from the center of the Sun. Kepler's third law tells us that:
+Let $M_1$ and $M_2$ be the masses of the Sun and the Earth respectively. Let $R$ be the Earth-Sun distance, and $r_1$ be the distance of $L_1$ from the Earth. Both the Sun and the Earth orbit around their center of mass $C$, which is $RM_2/(M_1 + M_2)$ away from the center of the Sun. Kepler's third law tells us that:
 
 $$
 \omega^2 R^3 = G(M_1 + M_2)
@@ -42,31 +42,31 @@ $$
 where $\omega$ is the orbital frequency, and $G$ is the gravitational constant. An object at $L_1$ will also orbit around the Earth-Sun center of mass, with a radius $r = RM_1/(M_1 + M_2) - r_1$ (see the figure for an illustration). Equating the gravitational force with its centrifugal force at the above orbital frequency, one can write down the equation for $r_1$:
 
 $$
-\frac{GM_1}{(R - r_1)^2} - \frac{GM_2}{r_1^2} = \left(\frac{M_1}{M_1 + M_2}R - r_1\right)\frac{M_1 + M_2}{R^3}
+\frac{GM_1}{(R - r_1)^2} - \frac{GM_2}{r_1^2} = \left(\frac{M_1}{M_1 + M_2}R - r_1\right)\frac{G(M_1 + M_2)}{R^3}
 $$
 
 Similarly, the second Lagrange point $L_2$ is on the line passing through the Sun and the Earth, except that $L_2$ lies on the far side of the Earth. In this case, an object at $L_2$ orbits at the same frequency as the Earth, but the centrifugal force is given by the combined gravitational force from both the Sun and the Earth. Let $r_2$ be the distance between the center of Earth and $L_2$, a similar reasoning as above gives the equation for $r_2$:
 
 $$
-\frac{GM_1}{(R + r_2)^2} + \frac{GM_2}{r_2^2} = \left(\frac{M_1}{M_1 + M_2}R + r_2\right)\frac{M_1 + M_2}{R^3}
+\frac{GM_1}{(R + r_2)^2} + \frac{GM_2}{r_2^2} = \left(\frac{M_1}{M_1 + M_2}R + r_2\right)\frac{G(M_1 + M_2)}{R^3}
 $$
 
 The third Lagrange point $L_3$ lies behind the Sun, but the idea is similar to $L_2$. Let the distance between $L_3$ and the center of the Sun be $R - r_3$ (defined this way so that $r_3$ is a small number compared to $R$, just like $r_1$ and $r_2$). The equation for $r_3$ is:
 
 $$
-\frac{GM_1}{(R - r_3)^2} + \frac{GM_2}{(2R - r_3)^2} = \left(\frac{M_2}{M_1 + M_2}R + R - r_3\right)\frac{M_1 + M_2}{R^3}
+\frac{GM_1}{(R - r_3)^2} + \frac{GM_2}{(2R - r_3)^2} = \left(\frac{M_2}{M_1 + M_2}R + R - r_3\right)\frac{G(M_1 + M_2)}{R^3}
 $$
 
 You task is the following: 
 
 First, derive the _dimensionless_ versions of the 3 equations above. You can define $x_{1,2,3} = r_{1,2,3}/R$, and $\mu = M_2/(M_1 + M_2)$ to help with the process. Write down your steps and results in a PDF or Markdown file named `problem2.pdf` or `problem2.md` and commit it to the GitHub repo.
 
-Second, write a C++ program to solve these three _dimensionless_ equations for $x_{1,2,3}$. You should make use of the functions you implemented in Problem 1. Choose the method that makes the most sense to you, and choose a reasonable tolerance. Think what tolerance makes sense: is $10^{-2}$ enough, or do you want to shoot for $10^{-10}$. Print out the answer in the following format:
+Second, write a C++ program to solve these three _dimensionless_ equations for $x_{1,2,3}$. You should make use of the functions you implemented in Problem 1. Choose the method that makes the most sense to you, and be mindful when choosing the initial trial solution. Choose a reasonable tolerance. Think what tolerance makes sense: is $10^{-2}$ enough, or do you want to shoot for $10^{-10}$. Print out the answer in the following format:
 
 ``` sh
 r1: [x1]R
 r2: [x2]R
 r3: [x3]R
 ```
-For example, if you find $x_1\approx 0.03$, then it should print `r1: 0.03R`. Name your source file `problem2.cpp` and commit it to the GitHub repo.
+For example, if you find $x_1\approx 0.03$, then it should print `r1: 0.03R`. Name your source file `problem2.cpp` and commit it to the GitHub repo. Write its output to `problem2.txt` and commit it to the repo too. This will allow us to know the results you get on your machine.
 
