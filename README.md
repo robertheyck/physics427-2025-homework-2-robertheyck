@@ -17,13 +17,13 @@ template <typename F, typename Fprime>
 std::tuple<bool, double> newton_raphson(const F& f, const Fprime& fprime, double x0, double tolerance);
 ```
 
-Fixed point iteration and Newton's method both start with a trial solution, whereas the bisection method starts with an interval $[a, b]$. All of them accepts a tolerance value. For the purpose of the homework, we take it to mean "how close $f(x)$ is close to 0", meaning that we terminate the iteration when $|f(x_n)| < \epsilon$ where $\epsilon$ is the given tolerance. 
+Fixed point iteration and Newton's method both start with a trial solution, whereas the bisection method starts with an interval $[a, b]$. All of them accepts a tolerance value. For the purpose of the homework, we take it to mean "how close $f(x)$ is to 0", meaning that we terminate the iteration when $|f(x_n)| < \epsilon$ where $\epsilon$ is the given tolerance. 
 
-We use `std::tuple` as return value again, since we want to include the information of whether a solution was found. The first element is a boolean value, marking whether the algorithm converged correctly. If the iteration stops due to hitting the tolerance, return `true` for the boolean in the `std::tuple`, and set the second element as the found solution. If for whatever reason the iteration fails to converge, does not hit the target tolerance, or produces NaN, then you should return `false` for the first element in the `std::tuple`, and set the `double` to whatever value the iteration gives you (probably a wrong answer or NaN). Note that in order to achieve this, you may need to set a maximum number of iterations.
+We use `std::tuple` as return value again, since we want to include the information of whether a solution was found. The first element is a boolean value, marking whether the algorithm converged correctly. If the iteration stops due to hitting the tolerance, return `true` for the boolean in the `std::tuple`, and set the second element as the found solution. If for whatever reason the iteration fails to converge, does not hit the target tolerance, or produces NaN, then you should return `false` for the first element in the `std::tuple`, and set the `double` to whatever value the iteration gives you (probably a wrong answer or NaN). Note that in order to achieve this, you may need to set a maximum number of iterations. Your function should also return `false` when the input does not make sense, e.g. for the bisection method when $f(a)f(b) \geq 0$. 
     
 Note that for Newton's method, you will also need to pass the derivative of $f$ as input, since we need to evaluate it during the iteration.
 
-Finally add and commit your `problem1.h` to the repo. I have included a test C++ file, `test.cpp`, in the repository to help you debug your code. It will assume your functions are implemented in the `problem1.h` header, and try to call these functions to test whether they yield correct results. I also encourage you to write a few of your own test cases, since the homework problem will be graded using a different, more comprehensive set of test cases.
+Finally add and commit your `problem1.h` to the repo. I have included a test C++ file, `test.cpp`, in the repository to help you debug your code. It will assume your functions are implemented in the `problem1.h` header, and try to call these functions to test whether they yield correct results. I also encourage you to write a few of your own test cases, since the homework problem will be graded using a different, more comprehensive set of tests.
 
 ## 2. Finding Lagrange Points
 
@@ -59,9 +59,9 @@ $$
 
 You task is the following: 
 
-First, derive the _dimensionless_ versions of the 3 equations above. You can define $x_{1,2,3} = r_{1,2,3}/R$, and $\mu = M_2/(M_1 + M_2)$ to help with the process. Write down your steps and results in a PDF or Markdown file named `problem2.pdf` or `problem2.md` and commit it to the GitHub repo.
+First, derive the _dimensionless_ versions of the 3 equations above. You can define $x_{1,2,3} = r_{1,2,3}/R$, and $\mu = M_2/(M_1 + M_2)$ to help with the process. You may find the values of $M_1$ and $M_2$ online. Write down your steps and results in a PDF or Markdown file named `problem2.pdf` or `problem2.md` and commit it to the GitHub repo.
 
-Second, write a C++ program to solve these three _dimensionless_ equations for $x_{1,2,3}$. You should make use of the functions you implemented in Problem 1. Choose the method that makes the most sense to you, and be mindful when choosing the initial trial solution. Choose a reasonable tolerance. Think what tolerance makes sense: is $10^{-2}$ enough, or do you want to shoot for $10^{-10}$. Print out the answer in the following format:
+Second, write a C++ program to solve these three _dimensionless_ equations for $x_{1,2,3}$. You should make use of the functions you implemented in Problem 1. Choose the method that makes the most sense to you, and be mindful when choosing the initial trial solution or interval. Choose a reasonable tolerance. Think what tolerance makes sense: is $10^{-2}$ enough, or do you want to shoot for $10^{-10}$. Print out the answer in the following format:
 
 ``` sh
 r1: [x1]R
