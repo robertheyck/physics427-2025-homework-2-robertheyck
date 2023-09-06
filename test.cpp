@@ -39,7 +39,7 @@ int main() {
 
   // Test function and derivative for Newton-Raphson
   auto f3 = [](double x) { return 4.0 + 8.0 * x * x - x * x * x * x; };
-  auto f3prime = [](double x) { return 8.0 * x - 4.0 * x * x * x; };
+  auto f3prime = [](double x) { return 16.0 * x - 4.0 * x * x * x; };
 
   // Run Newton-Raphson
   auto result3 = newton_raphson(f3, f3prime, 3.0, 1e-6);
