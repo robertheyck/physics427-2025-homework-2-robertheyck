@@ -15,7 +15,7 @@ int main() {
       std::abs(std::get<1>(result1) - root1) < 1e-6) {
     std::cout << "Fixed point: PASS\n";
   } else {
-    std::cout << "Fixed point: FAIL, root is " << std::setprecision(10)
+    std::cout << "Fixed point: FAIL, root is " << std::setprecision(8)
               << std::get<1>(result1) << ", expected to be around " << root1
               << std::endl;
   }
@@ -32,7 +32,7 @@ int main() {
       std::abs(std::get<1>(result2) - root2) < 1e-6) {
     std::cout << "Bisection: PASS\n";
   } else {
-    std::cout << "Bisection: FAIL, root is " << std::setprecision(10)
+    std::cout << "Bisection: FAIL, root is " << std::setprecision(8)
               << std::get<1>(result2) << ", expected to be around " << root2
               << std::endl;
   }
@@ -50,7 +50,7 @@ int main() {
       std::abs(std::get<1>(result3) - root3) < 1e-6) {
     std::cout << "Newton: PASS\n";
   } else {
-    std::cout << "Newton: FAIL, root is " << std::setprecision(10)
+    std::cout << "Newton: FAIL, root is " << std::setprecision(8)
               << std::get<1>(result3) << ", expected to be around " << root3
               << std::endl;
   }

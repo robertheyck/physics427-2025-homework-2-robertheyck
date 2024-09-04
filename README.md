@@ -1,10 +1,10 @@
 # Physics 427 Homework 2
 
-__Due 11:59pm Monday 9/11/2023__
+__Due 11:59pm Wednesday 9/11/2024__
 
 ## 1. Root Finding Algorithms
 
-In a C++ header file `problem1.h`, implement the three root-finding algorithms discussed in class. Use template to allow the functions to accept arbitrary functions $f$ for input, and solve the equation $f(x) = 0$. The three functions should look like:
+In a C++ header file `problem1.h`, implement the three root-finding algorithms discussed in class. Use `template` to allow the functions to accept arbitrary functions $f$ for input, and solve the equation $f(x) = 0$. The three functions should look like:
 
 ``` c++
 template <typename F>
@@ -19,7 +19,7 @@ std::tuple<bool, double> newton_raphson(const F& f, const Fprime& fprime, double
 
 Fixed point iteration and Newton's method both start with a trial solution, whereas the bisection method starts with an interval $[a, b]$. All of them accepts a tolerance value. For the purpose of the homework, we take it to mean "how close $f(x)$ is to 0", meaning that we terminate the iteration when $|f(x_n)| < \epsilon$ where $\epsilon$ is the given tolerance. 
 
-We use `std::tuple` as return value again, since we want to include the information of whether a solution was found. The first element is a boolean value, marking whether the algorithm converged correctly. If the iteration stops due to hitting the tolerance, return `true` for the boolean in the `std::tuple`, and set the second element as the found solution. If for whatever reason the iteration fails to converge, does not hit the target tolerance, or produces NaN, then you should return `false` for the first element in the `std::tuple`, and set the `double` to whatever value the iteration gives you (probably a wrong answer or NaN). Note that in order to achieve this, you may need to set a maximum number of iterations. Your function should also return `false` when the input does not make sense, e.g. for the bisection method when $f(a)f(b) \geq 0$. 
+We use `std::tuple` as return value again, since we want to include the information of whether a solution was found. The first element is a boolean value, marking whether the algorithm converged correctly. If the iteration stops due to hitting the tolerance, return `true` for the boolean in the `std::tuple`, and set the second element as the found solution. If for whatever reason the iteration fails to converge, does not hit the target tolerance, or produces NaN, then you should return `false` for the first element in the `std::tuple`, and set the `double` to whatever value the iteration gives you (probably a wrong answer or NaN). Note that in order to achieve this, you may need to set a maximum number of iterations. Your function should also return `false` when the input does not make sense, e.g. for the bisection method when $f(a)f(b) \geq 0$. Try to be as comprehensive as you can.
     
 Note that for Newton's method, you will also need to pass the derivative of $f$ as input, since we need to evaluate it during the iteration.
 
@@ -57,16 +57,18 @@ $$
 \frac{GM_1}{(R - r_3)^2} + \frac{GM_2}{(2R - r_3)^2} = \left(\frac{M_2}{M_1 + M_2}R + R - r_3\right)\frac{G(M_1 + M_2)}{R^3}
 $$
 
-You task is the following: 
-
-First, derive the _dimensionless_ versions of the 3 equations above. You can define $x_{1,2,3} = r_{1,2,3}/R$, and $\mu = M_2/(M_1 + M_2)$ to help with the process. You may find the values of $M_1$ and $M_2$ online. Write down your steps and results in a PDF or Markdown file named `problem2.pdf` or `problem2.md` and commit it to the GitHub repo.
-
-Second, write a C++ program to solve these three _dimensionless_ equations for $x_{1,2,3}$. You should make use of the functions you implemented in Problem 1. Choose the method that makes the most sense to you, and be mindful when choosing the initial trial solution or interval. Choose a reasonable tolerance. Think what tolerance makes sense: is $10^{-2}$ enough, or do you want to shoot for $10^{-10}$. Print out the answer in the following format:
+You task is to write a C++ program to solve these three equations for $x_{1,2,3}$. You should make use of the functions you implemented in Problem 1. Choose the method that makes the most sense to you, and be mindful when choosing the initial trial solution or interval. Choose a reasonable tolerance. Think what tolerance makes sense: is $10^{-2}$ enough, or do you want to shoot for $10^{-10}$. Print out the answer in the following format (in units of meters $m$):
 
 ``` sh
-r1: [x1]R
-r2: [x2]R
-r3: [x3]R
+r1: [x1]m
+r2: [x2]m
+r3: [x3]m
 ```
-For example, if you find $x_1\approx 0.03$, then it should print `r1: 0.03R`. Name your source file `problem2.cpp` and commit it to the GitHub repo. Write its output to `problem2.txt` and commit it to the repo too. This will allow us to know the results you get on your machine.
+You should be able to find the value of the constants $G$, $M_1$, $M_2$, and $R$ online. Keep only 4 significant figures. You can achieve that using for example:
+
+``` c++
+std::cout << std::precision(4) << 3.14159265 << std::endl;
+```
+  
+Name your source file `problem2.cpp` and commit it to the GitHub repo. Write its output to `problem2.txt` and commit it to the repo too. 
 
