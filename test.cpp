@@ -1,6 +1,7 @@
 #include "problem1.h"
 #include <iomanip>
 #include <iostream>
+#include <cmath>
 
 int main() {
   // Test function for fixed point iteration

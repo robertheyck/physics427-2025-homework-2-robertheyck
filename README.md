@@ -67,7 +67,7 @@ r3: [x3]m
 You should be able to find the value of the constants $G$, $M_1$, $M_2$, and $R$ online. Keep only 6 significant figures. You can achieve that using for example:
 
 ``` c++
-std::cout << std::precision(6) << 3.14159265 << std::endl;
+std::cout << std::setprecision(6) << 3.14159265 << std::endl;
 ```
   
 Name your source file `problem2.cpp` and commit it to the GitHub repo. Write its output to `problem2.txt` and commit it to the repo too. 
