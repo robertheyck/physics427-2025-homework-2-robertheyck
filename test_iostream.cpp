@@ -1,6 +1,6 @@
 #include "problem1.h"
 #include <iomanip>
-#include <print>
+#include <iostream>
 #include <cmath>
 
 int main() {
@@ -14,10 +14,11 @@ int main() {
   double root1 = 1.841406;
   if (std::get<0>(result1) == true &&
       std::abs(std::get<1>(result1) - root1) < 1e-6) {
-    std::print("Fixed point: PASS\n");
+    std::cout << "Fixed point: PASS\n";
   } else {
-    std::print("Fixed point: FAIL, root is {:.8g}, expected to be around {}\n",
-              std::get<1>(result1), root1);
+    std::cout << "Fixed point: FAIL, root is " << std::setprecision(8)
+              << std::get<1>(result1) << ", expected to be around " << root1
+              << std::endl;
   }
 
   // Test function for bisection
@@ -30,10 +31,11 @@ int main() {
   double root2 = 0.202774;
   if (std::get<0>(result2) == true &&
       std::abs(std::get<1>(result2) - root2) < 1e-6) {
-    std::print("Bisection: PASS\n");
+    std::cout << "Bisection: PASS\n";
   } else {
-    std::print("Bisection: FAIL, root is {:.8g}, expected to be around {}\n",
-              std::get<1>(result2), root2);
+    std::cout << "Bisection: FAIL, root is " << std::setprecision(8)
+              << std::get<1>(result2) << ", expected to be around " << root2
+              << std::endl;
   }
 
   // Test function and derivative for Newton-Raphson
@@ -47,14 +49,12 @@ int main() {
   double root3 = 2.910693;
   if (std::get<0>(result3) == true &&
       std::abs(std::get<1>(result3) - root3) < 1e-6) {
-    std::print("Newton: PASS\n");
+    std::cout << "Newton: PASS\n";
   } else {
-    std::print("Newton: FAIL, root is {:.8g}, expected to be around {}\n",
-              std::get<1>(result3), root3);
+    std::cout << "Newton: FAIL, root is " << std::setprecision(8)
+              << std::get<1>(result3) << ", expected to be around " << root3
+              << std::endl;
   }
-
-  std::print("{:.5g}\n", 333.14159265);
-  std::print("{:.5f}\n", 333.14159265);
 
   return 0;
 }

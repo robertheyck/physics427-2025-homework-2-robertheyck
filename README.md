@@ -1,10 +1,10 @@
 # Physics 427 Homework 2
 
-__Due 11:59pm Wednesday 9/11/2024__
+__Due 11:59pm Wednesday 9/10/2025__
 
-## 1. Root Finding Algorithms
+## 1. Root Finding Algorithms (20 points)
 
-In a C++ header file `problem1.h`, implement the three root-finding algorithms discussed in class. Use `template` to allow the functions to accept arbitrary functions $f$ for input, and solve the equation $f(x) = 0$. The three functions should look like:
+In a C++ header file `problem1.h`, implement the three root-finding algorithms discussed in class. In Friday's class, we will already be implementing the fixed point iteration function. You can reuse the submission from that class. Use `template` to allow the functions to accept arbitrary functions $f$ for input, and solve the equation $f(x) = 0$. The three functions should look like:
 
 ``` c++
 template <typename F>
@@ -17,17 +17,17 @@ template <typename F, typename Fprime>
 std::tuple<bool, double> newton_raphson(const F& f, const Fprime& fprime, double x0, double tolerance);
 ```
 
-Fixed point iteration and Newton's method both start with a trial solution, whereas the bisection method starts with an interval $[a, b]$. All of them accepts a tolerance value. For the purpose of the homework, we take it to mean "how close $f(x)$ is to 0", meaning that we terminate the iteration when $|f(x_n)| < \epsilon$ where $\epsilon$ is the given tolerance. 
+Fixed point iteration and Newton's method both start with a trial solution, whereas the bisection method starts with an interval $[a, b]$. All of them accepts a tolerance value. There are multiple ways to define tolerance. For the purpose of the homework, we take it to mean "how close $f(x)$ is to 0", meaning that we terminate the iteration when $|f(x_n)| < \epsilon$ where $\epsilon$ is the given tolerance. For bisection method, $x_n$ should be defined to be the average between $a_n$ and $b_n$.
 
 We use `std::tuple` as return value again, since we want to include the information of whether a solution was found. The first element is a boolean value, marking whether the algorithm converged correctly. If the iteration stops due to hitting the tolerance, return `true` for the boolean in the `std::tuple`, and set the second element as the found solution. If for whatever reason the iteration fails to converge, does not hit the target tolerance, or produces NaN, then you should return `false` for the first element in the `std::tuple`, and set the `double` to whatever value the iteration gives you (probably a wrong answer or NaN). Note that in order to achieve this, you may need to set a maximum number of iterations. Your function should also return `false` when the input does not make sense, e.g. for the bisection method when $f(a)f(b) \geq 0$. Try to be as comprehensive as you can.
     
-Note that for Newton's method, you will also need to pass the derivative of $f$ as input, since we need to evaluate it during the iteration.
+Note that for Newton's method, you will also need to pass the derivative of $f$ as input, since we need to evaluate it during the iteration. We achieve this by passing in an additional function which gives the derivative $f'$.
 
-Finally add and commit your `problem1.h` to the repo. I have included a test C++ file, `test.cpp`, in the repository to help you debug your code. It will assume your functions are implemented in the `problem1.h` header, and try to call these functions to test whether they yield correct results. I also encourage you to write a few of your own test cases, since the homework problem will be graded using a different, more comprehensive set of tests.
+Finally add and commit your `problem1.h` to the repo. I have included a test C++ file, `test.cpp`, in the repository to help you debug your code. It will assume your functions are implemented in the `problem1.h` header, and try to call these functions to test whether they yield correct results. I also encourage you to write a few of your own test cases, since the homework problem will be graded using a different, more comprehensive set of tests. If you have trouble compiling the `test.cpp` file due to compiler not compatible with `c++23`, then you can use the alternative `test_iostream.cpp` which uses `std::cout` instead.
 
-## 2. Finding Lagrange Points
+## 2. Finding Lagrange Points (30 points)
 
-In a system of two celestial bodies orbiting each other, there are equilibrium points for small-mass objects to follow the orbit of the more massive bodies. These are called _Lagrange points_. For example, the recently launched James-Webb Space Telescope (JWST) maintains a small orbit around the second Lagrange point $L_2$ of the Earth-Sun system.
+In a system of two celestial bodies orbiting each other, there are equilibrium points for small-mass objects to follow the orbit of the more massive bodies. These are called _Lagrange points_. For example, the NASA flagship mission James-Webb Space Telescope (JWST) maintains a small orbit around the second Lagrange point $L_2$ of the Earth-Sun system.
 
 We are interested in the 3 collinear Lagrange points lying on along the line going through the Sun and the Earth. $L_1$ is defined to be the point between the Earth and the Sun where the combined gravitational force of both bodies gives the right centrifugal force for an object to orbit there at the same orbital period as the Earth. This way, such an object will be seen as "stationary" with respect to both the Earth and the Sun.
 
@@ -67,8 +67,11 @@ r3: [x3]m
 You should be able to find the value of the constants $G$, $M_1$, $M_2$, and $R$ online. Keep only 6 significant figures. You can achieve that using for example:
 
 ``` c++
-std::cout << std::setprecision(6) << 3.14159265 << std::endl;
+std::println("{:.6g}", 3.141592653589793);
 ```
   
 Name your source file `problem2.cpp` and commit it to the GitHub repo. Write its output to `problem2.txt` and commit it to the repo too. 
 
+## 3. Using AI (10 points)
+
+Feed the previous 2 problems into your favorite AI tool and commit the results as `problem1_ai.cpp` and `problem1_ai.txt` etc. Include a short write-up to describe what particular AI you used, whether the AI nailed it or not, and what is your general experience. You can commit the write up to the repository as `problem3.txt`.
