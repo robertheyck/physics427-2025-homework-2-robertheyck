@@ -1,0 +1,10 @@
+I used ChatGPT-5 Thinking to solve the homework problems in part (3). I pasted the whole README.md file into the prompt 
+and told it to follow the directions. The AI generally nailed it. However, in problem 1, I had to make some additions (I 
+had to include "using hw2::fixed_point_iteration, using hw2::bisection; using hw2::newton_raphson;") at the top of the 
+test_ai.cpp file to get it to compile correctly. For problem 2, the AI's attempt compiled without issue and gave (presumably)
+correct answers. 
+
+It is generally nice to have AI verify that my attempt was also correct, and that, in a pinch, I know I can rely on AI
+to help me code accurately at a much faster pace. However, using AI without understanding how to have done the coding 
+oneself generally leads to issues, since one ends up relying on AI completely and can't diagnose any coding bugs that arise
+or modify the code themselves.
